@@ -11,21 +11,23 @@
     <link rel="stylesheet" href="{{ asset('backend/') }}/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('backend/') }}/dist/css/adminlte.min.css">
+    @livewireStyles
 </head>
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
 
         <!-- Navbar -->
-        @include('admin.layouts.include.navbar')
+        @include('layouts.include.navbar')
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        @include('admin.layouts.include.aside')
+        @include('layouts.include.aside')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-           @yield('content')
+           {{ $slot }}
+           {{-- @yield('content') --}}
         </div>
         <!-- /.content-wrapper -->
 
@@ -52,6 +54,14 @@
     <script src="{{ asset('backend/') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('backend/') }}/dist/js/adminlte.min.js"></script>
+    @livewireScripts
+
+
+    <script>
+        window.addEventListener('show-user-form', event => {
+            $('#userAddForm').modal('show');
+        })
+    </script>
 </body>
 
 </html>
