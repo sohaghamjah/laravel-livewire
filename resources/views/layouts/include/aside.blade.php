@@ -46,7 +46,7 @@
                 <li class="nav-item">
                   <a href="{{ route('admin.users.list') }}"
                       class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}" wire:navigate>
-                      <i class="nav-icon fas fa-tachometer-alt"></i>
+                      <i class="nav-icon fas fa-users"></i>
                       <p>
                           Users
                       </p>

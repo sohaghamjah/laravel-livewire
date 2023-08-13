@@ -43,7 +43,7 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>
-                                                <a href="" class="text-info"><i class="fas fa-edit"></i></a>
+                                                <a href="" class="text-info" wire:click.prevent="editUser({{ $item }})"><i class="fas fa-edit"></i></a>
                                                 <a href="" class="text-danger ml-2"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
@@ -60,12 +60,18 @@
     <!-- /.content -->
 
     <!-- Modal -->
-    <div class="modal" id="userAddForm" wire:ignore.self>
+    <div class="modal" id="userForm" wire:ignore.self>
         <div class="modal-dialog">
-            <form autocomplete="off" wire:submit.prevent="userStore">
+            <form autocomplete="off" wire:submit.prevent="{{ $show_edit_user_modal ? 'userUpdate' : 'userStore' }}">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add New User</h5>
+                        <h5 class="modal-title">
+                            @if ($show_edit_user_modal)
+                                Edit user
+                            @else
+                                Add New User
+                            @endif
+                        </h5>
                         <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -99,7 +105,13 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">
+                            @if ($show_edit_user_modal)
+                                Update changes
+                            @else
+                                Save changes
+                            @endif
+                        </button>
                     </div>
             </form>
         </div>
