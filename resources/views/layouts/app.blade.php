@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('backend/') }}/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('backend/') }}/dist/css/adminlte.min.css">
+    
     @livewireStyles
 </head>
 
@@ -60,6 +61,9 @@
     <script>
         window.addEventListener('show-user-form', event => {
             $('#userAddForm').modal('show');
+        })
+        window.addEventListener('hide-user-form', event => {
+            $('#userAddForm').modal('hide')
         })
     </script>
 </body>

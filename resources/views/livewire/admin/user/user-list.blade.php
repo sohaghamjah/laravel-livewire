@@ -37,15 +37,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>
-                                            <a href="" class="text-info"><i class="fas fa-edit"></i></a>
-                                            <a href="" class="text-danger ml-2"><i class="fas fa-trash"></i></a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($users as $item)
+                                        <tr>
+                                            <th scope="row">{{ $loop->index + 1 }}</th>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->email }}</td>
+                                            <td>
+                                                <a href="" class="text-info"><i class="fas fa-edit"></i></a>
+                                                <a href="" class="text-danger ml-2"><i class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -60,7 +62,7 @@
     <!-- Modal -->
     <div class="modal" id="userAddForm" wire:ignore.self>
         <div class="modal-dialog">
-            <form autocomplete="off" wire:submit.prevent="userStore" autocomplete="off">
+            <form autocomplete="off" wire:submit.prevent="userStore">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Add New User</h5>
@@ -70,29 +72,29 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Name</label>
+                            <label for="name">Name</label>
                             <input type="text" wire:model.defer="state.name" class="form-control @error('name') is-invalid @enderror" id="name">
                             @error('name')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email</label>
-                            <input type="email" class="form-control @error('name') is-invalid @enderror" wire:model.defer="state.email" id="email">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" wire:model.defer="state.email" id="email">
                             @error('email')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control @error('name') is-invalid @enderror" wire:model.defer="state.password" id="password">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" wire:model.defer="state.password" id="password">
                             @error('password')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Confirm Password</label>
-                            <input type="password" class="form-control" wire:model.defer="state.confirm_password" id="confirm_password">
+                            <label for="password_confirmation">Confirm Password</label>
+                            <input type="password" class="form-control" wire:model.defer="state.password_confirmation" id="password_confirmation">
                         </div>
                     </div>
                     <div class="modal-footer">
